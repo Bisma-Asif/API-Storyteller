@@ -3,6 +3,7 @@ import { conversationScript, SceneType } from '../data/conversation';
 import { ChatBubble } from '../components/chat/ChatBubble';
 import { AnimatedScenes } from '../components/scenes/AnimatedScenes';
 import { motion } from 'framer-motion';
+import { Link } from 'wouter';
 
 const HOLD_DURATION_MS = 4500; // How long a finished message stays on screen before auto-advancing
 
@@ -54,6 +55,14 @@ export default function Home() {
   return (
     <div className="min-h-[100dvh] w-full flex flex-col md:flex-row bg-grid-pattern relative">
       
+      {/* Navigation to Git/Github */}
+      <div className="fixed top-4 left-4 z-40">
+        <Link href="/git-github" className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md px-4 py-2 rounded-full border border-white/60 shadow-sm text-sm font-medium hover:bg-white transition-colors text-slate-700">
+          <span>Git/GitHub wali baat</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </Link>
+      </div>
+
       {/* 
         Mobile: Top sticky scene, bottom scrollable chat
         Desktop: Left sticky scene, right scrollable chat 
