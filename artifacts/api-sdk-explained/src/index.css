@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Mali:wght@400;500;600;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -22,33 +22,38 @@
 
   --font-sans: var(--app-font-sans);
   --font-display: var(--app-font-display);
+  --font-comic: var(--app-font-comic);
 }
 
 :root {
-  /* Dark Space Coffee Shop Vibe */
-  --background: 240 30% 6%; /* Deep night blue/black */
-  --foreground: 210 20% 95%; /* Soft off-white */
+  /* Warm Tea-Time Chat Vibe */
+  --background: 40 50% 98%; /* Warm cream */
+  --foreground: 20 20% 20%; /* Soft dark brown/charcoal */
   
-  --border: 240 20% 15%;
-  --input: 240 20% 15%;
-  --ring: 180 80% 50%;
+  --border: 40 20% 90%;
+  --input: 40 20% 90%;
+  --ring: 25 85% 55%;
   
-  --primary: 180 80% 50%; /* Vibrant Cyan */
-  --primary-foreground: 240 30% 6%;
+  --primary: 25 85% 55%; /* Warm soft orange */
+  --primary-foreground: 0 0% 100%;
   
-  --secondary: 35 90% 60%; /* Warm Amber/Orange */
-  --secondary-foreground: 240 30% 6%;
+  --secondary: 175 40% 60%; /* Soft teal/mint */
+  --secondary-foreground: 20 20% 10%;
   
-  --accent: 280 70% 60%; /* Electric Purple */
-  --accent-foreground: 210 20% 95%;
+  --accent: 330 60% 70%; /* Soft pink */
+  --accent-foreground: 20 20% 10%;
 
-  --card: 240 25% 10%;
-  --card-foreground: 210 20% 95%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 20% 20%;
 
-  --app-font-sans: 'Plus Jakarta Sans', sans-serif;
-  --app-font-display: 'Space Grotesk', sans-serif;
+  --app-font-sans: 'Outfit', sans-serif;
+  --app-font-display: 'Outfit', sans-serif;
+  --app-font-comic: 'Mali', cursive;
 
-  --radius: 1rem;
+  --radius: 1.5rem;
+
+  --aisha-bubble: 330 60% 95%;
+  --dani-bubble: 175 40% 92%;
 }
 
 @layer base {
@@ -57,9 +62,11 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+    /* Soft warm gradient mesh background */
     background-image: 
-      radial-gradient(circle at 15% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 25%),
-      radial-gradient(circle at 85% 30%, rgba(255, 165, 0, 0.05) 0%, transparent 25%);
+      radial-gradient(circle at 10% 20%, hsla(25, 85%, 85%, 0.4) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, hsla(175, 40%, 85%, 0.4) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, hsla(330, 60%, 90%, 0.4) 0%, transparent 60%);
     background-attachment: fixed;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -67,32 +74,26 @@
   }
 }
 
-/* Glassmorphism utility */
-.glass-panel {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
-}
-.glass-panel-heavy {
-  @apply bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl;
+.glass-bubble {
+  @apply backdrop-blur-md shadow-sm border border-white/40;
 }
 
-/* Custom Scrollbar */
+.glass-card {
+  @apply bg-white/60 backdrop-blur-xl border border-white/50 shadow-xl;
+}
+
+/* Custom Scrollbar hidden for app-like feel */
 ::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.5);
+  width: 0px;
+  background: transparent;
 }
 
-/* Grid Background */
+.comic-text {
+  font-family: var(--app-font-comic);
+}
+
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
