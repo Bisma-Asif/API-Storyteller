@@ -54,8 +54,8 @@ export default function Home() {
         <div className="w-full max-w-xl mx-auto flex flex-col">
           
           <div className="flex flex-col items-center mb-8 mt-4 text-muted-foreground/60">
-            <span className="text-xs font-bold uppercase tracking-widest mb-1">Today</span>
-            <span className="text-xs">Tea time chat</span>
+            <span className="text-xs font-bold uppercase tracking-widest mb-1">Aaj</span>
+            <span className="text-xs">Chai ke waqt ki baat cheet</span>
           </div>
 
           {conversationScript.slice(0, visibleMessages).map((msg, index) => (
@@ -85,10 +85,10 @@ export default function Home() {
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-2"
               onClick={(e) => {
                 e.stopPropagation();
-                alert("Copied link to clipboard! (Simulation)");
+                alert("Link copy ho gaya! (Simulation)");
               }}
             >
-              <span>Share this explanation</span>
+              <span>Yeh baat aage share karo</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
             </button>
           </motion.div>
@@ -103,7 +103,7 @@ export default function Home() {
           animate={{ opacity: [0.3, 0.7, 0.3] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          Tap anywhere to skip typing ➡️
+          Jaldi dekhne ke liye kahin bhi tap karo ➡️
         </motion.div>
       )}
     </div>

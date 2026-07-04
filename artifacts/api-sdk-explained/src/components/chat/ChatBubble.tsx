@@ -66,7 +66,7 @@ export function ChatBubble({ sender, text, emotion, isLatest, onComplete }: Chat
 
         <div className="flex flex-col gap-1">
           <span className={`text-xs text-muted-foreground px-2 ${isAisha ? 'text-right' : 'text-left'}`}>
-            {isAisha ? 'Aisha' : 'Dani'}
+            {isAisha ? 'Ayesha' : 'Dani'}
           </span>
           
           <div 

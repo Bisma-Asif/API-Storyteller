@@ -42,7 +42,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
               <motion.div className="absolute bottom-28 left-12 text-2xl text-slate-300" animate={{ y: [-10, -30], opacity: [0, 0.5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>〰️</motion.div>
               <motion.div className="absolute bottom-28 right-14 text-2xl text-slate-300" animate={{ y: [-10, -30], opacity: [0, 0.5, 0] }} transition={{ repeat: Infinity, duration: 2, delay: 1 }}>〰️</motion.div>
             </div>
-            <p className="comic-text text-xl text-amber-700/60 mt-4">The Setup</p>
+            <p className="comic-text text-xl text-amber-700/60 mt-4">Baat shuru hoti hai</p>
           </motion.div>
         )}
 
@@ -59,7 +59,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
               {/* Customer */}
               <div className="flex flex-col items-center">
                 <div className="text-4xl mb-2">🙋🏽‍♀️</div>
-                <div className="px-3 py-1 bg-white rounded-full text-xs font-bold shadow-sm">You</div>
+                <div className="px-3 py-1 bg-white rounded-full text-xs font-bold shadow-sm">Aap</div>
               </div>
               
               {/* Waiter (API) moving back and forth */}
@@ -90,7 +90,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
               {/* Kitchen */}
               <div className="flex flex-col items-center">
                 <div className="text-4xl mb-2">👨‍🍳🔥</div>
-                <div className="px-3 py-1 bg-slate-800 text-white rounded-full text-xs font-bold shadow-sm">System</div>
+                <div className="px-3 py-1 bg-slate-800 text-white rounded-full text-xs font-bold shadow-sm">Kitchen System</div>
               </div>
             </div>
             
@@ -140,6 +140,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                  <div className="absolute -bottom-8 bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full border border-purple-300">
                    SDK Kit
                  </div>
+                 {/* Universal Remote label kept in English since SDK/API remain technical brand terms */}
                </motion.div>
 
                {/* Signal */}
@@ -163,7 +164,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                   />
                   <div className="absolute bottom-1 w-4 h-1 bg-slate-600 rounded-full" />
                   <div className="absolute -bottom-6 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    System
+                    TV System
                   </div>
                </div>
              </div>
@@ -193,7 +194,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
               <div className="flex-1 bg-white/80 rounded-2xl p-4 flex flex-col items-center justify-center shadow-sm border border-slate-100 h-48">
                 <div className="text-4xl mb-2">🤵‍♂️</div>
                 <div className="font-bold text-slate-800 mb-1">API</div>
-                <p className="text-xs text-center text-slate-500">Just the messenger</p>
+                <p className="text-xs text-center text-slate-500">Sirf ek messenger</p>
               </div>
 
               <div className="text-2xl text-slate-300 font-bold font-display">VS</div>
@@ -203,7 +204,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                   <span>🤵‍♂️</span><span>🍱</span><span>🗺️</span>
                 </div>
                 <div className="font-bold text-teal-800 mb-1">SDK</div>
-                <p className="text-xs text-center text-teal-600">The whole VIP package</p>
+                <p className="text-xs text-center text-teal-600">Pura VIP package</p>
                 <motion.div 
                   className="absolute -top-3 -right-3 text-2xl"
                   animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] }}
@@ -242,7 +243,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              Share with a friend!
+              Kisi dost ke saath share karo!
             </motion.div>
           </motion.div>
         )}
