@@ -2,7 +2,7 @@
 
 Interactive API documentation and storytelling platform built with TypeScript.
 
-🔗 **Live Website**: [https://replit.com/@bismaaptech2/API-Storyteller](https://replit.com/@bismaaptech2/API-Storyteller)
+🔗 **Live Website**: Not hosted
 
 ## Features
 
@@ -82,7 +82,7 @@ pnpm --filter @workspace/api-sdk-explained run serve  # Preview the build
 
 ## Links
 
-- 🔗 [Live Demo on Replit](https://replit.com/@bismaaptech2/API-Storyteller)
+- 🔗 Live Demo: Not hosted
 - 📦 [GitHub Repository](https://github.com/Bisma-Asif/API-Storyteller)
 - 📚 [Documentation](./replit.md)
 
