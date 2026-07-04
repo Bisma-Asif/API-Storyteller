@@ -2,14 +2,15 @@
 
 Interactive API documentation and storytelling platform built with TypeScript.
 
-🔗 **Live Website**: [https://bisma-asif.github.io/API-Storyteller](https://bisma-asif.github.io/API-Storyteller)
+🔗 **Live Website**: [https://replit.com/@bismaaptech2/API-Storyteller](https://replit.com/@bismaaptech2/API-Storyteller)
 
 ## Features
 
 - 📚 Interactive API documentation
-- 🎨 Beautiful storytelling interface
-- ⚡ Built with TypeScript
-- 🚀 Fast and responsive
+- 🎨 Beautiful storytelling interface  
+- ⚡ Built with TypeScript & React
+- 🚀 Fast and responsive UI
+- 📊 Vite-powered development
 
 ## Getting Started
 
@@ -26,8 +27,8 @@ pnpm install
 ### Development
 
 ```bash
-# Run API server (port 5000)
-pnpm --filter @workspace/api-server run dev
+# Run the web app (runs on http://localhost:5173 by default)
+pnpm --filter @workspace/api-sdk-explained run dev
 
 # Type check
 pnpm run typecheck
@@ -38,32 +39,53 @@ pnpm run build
 
 ## Project Structure
 
-- **@workspace/api-server** - API backend (Express 5)
-- **@workspace/api-spec** - OpenAPI specification
-- **@workspace/db** - Database schema (PostgreSQL + Drizzle ORM)
-- **@workspace/ui** - Frontend components
+- **@workspace/api-sdk-explained** - Main React app with Vite (web UI)
+- **@workspace/scripts** - Utility scripts
+- **artifacts/** - Built artifacts
+- **lib/** - Shared libraries
 
 ## Tech Stack
 
-- **Runtime**: Node.js 24, TypeScript 5.9
+- **Frontend**: React 19, TypeScript 5.9, Vite
+- **UI Components**: Radix UI, TailwindCSS
+- **Forms**: React Hook Form, Zod validation
+- **Data Fetching**: TanStack React Query
 - **Package Manager**: pnpm workspaces
-- **API**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod v4, drizzle-zod
-- **API Codegen**: Orval
-- **Build**: esbuild
+- **Build**: Vite + esbuild
 
 ## Environment Variables
 
+```env
+# Add any required environment variables here
 ```
-DATABASE_URL=postgresql://...
+
+## Running the App Locally
+
+1. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+2. Start the development server:
+   ```bash
+   pnpm --filter @workspace/api-sdk-explained run dev
+   ```
+
+3. Open your browser to the URL shown (typically `http://localhost:5173`)
+
+## Building for Production
+
+```bash
+pnpm run build
+pnpm --filter @workspace/api-sdk-explained run serve  # Preview the build
 ```
+
+## Links
+
+- 🔗 [Live Demo on Replit](https://replit.com/@bismaaptech2/API-Storyteller)
+- 📦 [GitHub Repository](https://github.com/Bisma-Asif/API-Storyteller)
+- 📚 [Documentation](./replit.md)
 
 ## License
 
 MIT
-
-## Links
-
-- 🔗 [Live Demo](https://bisma-asif.github.io/API-Storyteller)
-- 🔗 [Replit Project](https://replit.com/@bismaaptech2/API-Storyteller)
