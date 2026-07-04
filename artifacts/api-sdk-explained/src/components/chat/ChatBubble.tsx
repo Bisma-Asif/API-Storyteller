@@ -9,9 +9,10 @@ interface ChatBubbleProps {
   emotion: Emotion;
   isLatest: boolean;
   onComplete?: () => void;
+  onTypingChange?: (isTyping: boolean) => void;
 }
 
-export function ChatBubble({ sender, text, emotion, isLatest, onComplete }: ChatBubbleProps) {
+export function ChatBubble({ sender, text, emotion, isLatest, onComplete, onTypingChange }: ChatBubbleProps) {
   const isAisha = sender === 'aisha';
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
@@ -26,6 +27,7 @@ export function ChatBubble({ sender, text, emotion, isLatest, onComplete }: Chat
       return;
     }
 
+    onTypingChange?.(true);
     let currentIndex = 0;
     let tempText = "";
     
@@ -39,24 +41,26 @@ export function ChatBubble({ sender, text, emotion, isLatest, onComplete }: Chat
         } else {
           clearInterval(interval);
           setIsTyping(false);
+          onTypingChange?.(false);
           if (onComplete) onComplete();
         }
-      }, 150); // Speed of word reveal
+      }, 280); // Slower, comfortable speed of word reveal
       
       return () => clearInterval(interval);
-    }, 800); // Initial typing indicator delay
+    }, 900); // Initial typing indicator delay
 
     return () => clearTimeout(initialDelay);
-  }, [text, isLatest, onComplete, words]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text, isLatest]);
 
   return (
     <motion.div 
-      className={`flex w-full mb-6 ${isAisha ? 'justify-end' : 'justify-start'}`}
+      className={`flex w-full mb-8 ${isAisha ? 'justify-end' : 'justify-start'}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
     >
-      <div className={`flex max-w-[85%] md:max-w-[70%] items-end gap-3 ${isAisha ? 'flex-row-reverse' : 'flex-row'}`}>
+      <div className={`flex max-w-[90%] md:max-w-[80%] items-end gap-3 ${isAisha ? 'flex-row-reverse' : 'flex-row'}`}>
         
         <CharacterAvatar 
           character={sender} 
@@ -65,25 +69,25 @@ export function ChatBubble({ sender, text, emotion, isLatest, onComplete }: Chat
         />
 
         <div className="flex flex-col gap-1">
-          <span className={`text-xs text-muted-foreground px-2 ${isAisha ? 'text-right' : 'text-left'}`}>
+          <span className={`text-sm text-muted-foreground px-2 ${isAisha ? 'text-right' : 'text-left'}`}>
             {isAisha ? 'Ayesha' : 'Dani'}
           </span>
           
           <div 
             className={`
-              relative p-4 text-base md:text-lg leading-relaxed shadow-sm
+              relative p-5 md:p-6 text-lg md:text-xl leading-relaxed md:leading-loose shadow-sm
               ${isAisha 
-                ? 'bg-[hsl(var(--aisha-bubble))] text-slate-800 rounded-2xl rounded-br-sm' 
-                : 'bg-[hsl(var(--dani-bubble))] text-slate-800 rounded-2xl rounded-bl-sm'
+                ? 'bg-[hsl(var(--aisha-bubble))] text-slate-800 rounded-3xl rounded-br-sm' 
+                : 'bg-[hsl(var(--dani-bubble))] text-slate-800 rounded-3xl rounded-bl-sm'
               }
               glass-bubble
             `}
           >
             {isLatest && isTyping && displayedText.length === 0 ? (
-              <div className="flex gap-1 items-center h-6 px-2">
-                <motion.div className="w-2 h-2 bg-slate-400 rounded-full" animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} />
-                <motion.div className="w-2 h-2 bg-slate-400 rounded-full" animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} />
-                <motion.div className="w-2 h-2 bg-slate-400 rounded-full" animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} />
+              <div className="flex gap-1.5 items-center h-7 px-2">
+                <motion.div className="w-2.5 h-2.5 bg-slate-400 rounded-full" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} />
+                <motion.div className="w-2.5 h-2.5 bg-slate-400 rounded-full" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} />
+                <motion.div className="w-2.5 h-2.5 bg-slate-400 rounded-full" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} />
               </div>
             ) : (
               <span>{isLatest ? displayedText : text}</span>

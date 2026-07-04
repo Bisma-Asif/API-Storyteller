@@ -1,12 +1,16 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, TargetAndTransition } from 'framer-motion';
 import { SceneType } from '../../data/conversation';
 
 interface AnimatedScenesProps {
   activeScene: SceneType;
+  isPaused?: boolean;
 }
 
-export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
+export function AnimatedScenes({ activeScene, isPaused = false }: AnimatedScenesProps) {
+  // Helper: when paused, loop animations hold their current position instead of continuing to cycle.
+  const loop = (anim: TargetAndTransition): TargetAndTransition | undefined => (isPaused ? undefined : anim);
+
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-3xl glass-card border-4 border-white">
       <AnimatePresence mode="wait">
@@ -26,21 +30,21 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
               {/* Tea Cups */}
               <motion.div 
                 className="absolute bottom-14 left-10 text-5xl"
-                animate={{ y: [0, -5, 0], rotate: [0, 5, 0] }}
+                animate={loop({ y: [0, -5, 0], rotate: [0, 5, 0] })}
                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
               >
                 🍵
               </motion.div>
               <motion.div 
                 className="absolute bottom-14 right-10 text-5xl"
-                animate={{ y: [0, -4, 0], rotate: [0, -5, 0] }}
+                animate={loop({ y: [0, -4, 0], rotate: [0, -5, 0] })}
                 transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut", delay: 0.5 }}
               >
                 ☕️
               </motion.div>
               {/* Steam */}
-              <motion.div className="absolute bottom-28 left-12 text-2xl text-slate-300" animate={{ y: [-10, -30], opacity: [0, 0.5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>〰️</motion.div>
-              <motion.div className="absolute bottom-28 right-14 text-2xl text-slate-300" animate={{ y: [-10, -30], opacity: [0, 0.5, 0] }} transition={{ repeat: Infinity, duration: 2, delay: 1 }}>〰️</motion.div>
+              <motion.div className="absolute bottom-28 left-12 text-2xl text-slate-300" animate={loop({ y: [-10, -30], opacity: [0, 0.5, 0] })} transition={{ repeat: Infinity, duration: 2 }}>〰️</motion.div>
+              <motion.div className="absolute bottom-28 right-14 text-2xl text-slate-300" animate={loop({ y: [-10, -30], opacity: [0, 0.5, 0] })} transition={{ repeat: Infinity, duration: 2, delay: 1 }}>〰️</motion.div>
             </div>
             <p className="comic-text text-xl text-amber-700/60 mt-4">Baat shuru hoti hai</p>
           </motion.div>
@@ -65,14 +69,14 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
               {/* Waiter (API) moving back and forth */}
               <motion.div 
                 className="flex flex-col items-center z-10"
-                animate={{ x: [-40, 40, -40] }}
+                animate={loop({ x: [-40, 40, -40] })}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               >
                 <div className="relative">
                   <div className="text-4xl">🤵‍♂️</div>
                   <motion.div 
                     className="absolute -top-6 -right-4 bg-yellow-100 text-[10px] px-2 py-1 rounded-full border border-yellow-300 font-bold"
-                    animate={{ opacity: [1, 0, 1] }}
+                    animate={loop({ opacity: [1, 0, 1] })}
                     transition={{ repeat: Infinity, duration: 2 }}
                   >
                     API
@@ -80,7 +84,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                 </div>
                 <motion.div 
                   className="mt-2 text-2xl"
-                  animate={{ rotate: [0, -10, 0, 10, 0] }}
+                  animate={loop({ rotate: [0, -10, 0, 10, 0] })}
                   transition={{ repeat: Infinity, duration: 1 }}
                 >
                   📝🍔
@@ -118,14 +122,14 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                {/* Remote (SDK) */}
                <motion.div 
                  className="relative w-16 h-32 bg-slate-800 rounded-2xl border-4 border-slate-700 flex flex-col items-center py-3 gap-2 shadow-2xl"
-                 animate={{ y: [0, -10, 0] }}
+                 animate={loop({ y: [0, -10, 0] })}
                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                >
                  <div className="w-10 h-6 bg-slate-900 rounded-sm mb-1" />
                  <motion.div 
                    className="w-8 h-8 rounded-full bg-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)] flex items-center justify-center cursor-pointer"
                    whileTap={{ scale: 0.9, backgroundColor: "#b91c1c" }}
-                   animate={{ scale: [1, 1.1, 1] }}
+                   animate={loop({ scale: [1, 1.1, 1] })}
                    transition={{ repeat: Infinity, duration: 2, repeatDelay: 1 }}
                  >
                     <span className="text-[10px] text-white">ON</span>
@@ -149,7 +153,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                    <motion.div 
                      key={i}
                      className="w-2 h-2 rounded-full bg-red-400"
-                     animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
+                     animate={loop({ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] })}
                      transition={{ repeat: Infinity, duration: 1, delay: i * 0.2 }}
                    />
                  ))}
@@ -159,7 +163,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                <div className="relative w-32 h-24 bg-slate-900 rounded-xl border-4 border-slate-800 flex items-center justify-center overflow-hidden">
                   <motion.div 
                     className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500"
-                    animate={{ opacity: [0.8, 1, 0.8] }}
+                    animate={loop({ opacity: [0.8, 1, 0.8] })}
                     transition={{ repeat: Infinity, duration: 0.2 }}
                   />
                   <div className="absolute bottom-1 w-4 h-1 bg-slate-600 rounded-full" />
@@ -207,7 +211,7 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
                 <p className="text-xs text-center text-teal-600">Pura VIP package</p>
                 <motion.div 
                   className="absolute -top-3 -right-3 text-2xl"
-                  animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] }}
+                  animate={loop({ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] })}
                   transition={{ repeat: Infinity, duration: 2 }}
                 >
                   ✨
@@ -227,14 +231,14 @@ export function AnimatedScenes({ activeScene }: AnimatedScenesProps) {
           >
              <motion.div 
                className="text-6xl mb-4"
-               animate={{ scale: [1, 1.2, 1], rotate: [-10, 10, -10] }}
+               animate={loop({ scale: [1, 1.2, 1], rotate: [-10, 10, -10] })}
                transition={{ repeat: Infinity, duration: 2 }}
              >
                🎉
              </motion.div>
              <div className="flex gap-4 text-4xl">
-               <motion.div animate={{ y: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 1 }}>☕️</motion.div>
-               <motion.div animate={{ y: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }}>🍪</motion.div>
+               <motion.div animate={loop({ y: [0, -20, 0] })} transition={{ repeat: Infinity, duration: 1 }}>☕️</motion.div>
+               <motion.div animate={loop({ y: [0, -20, 0] })} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }}>🍪</motion.div>
              </div>
              
              <motion.div 
